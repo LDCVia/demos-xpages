@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xc:layout>
+		<xp:this.facets>
+			<xp:panel xp:key="facetMiddle">
+				<xp:text tagName="h4" escape="true"
+					id="computedField1">
+					<xp:this.value><![CDATA[#{javascript:"There is no user record for " + @UserName() + " (" + PersonInfo.getInternetAddress() + ")"}]]></xp:this.value>
+				</xp:text>
+			</xp:panel>
+		</xp:this.facets>
+	</xc:layout>
+</xp:view>

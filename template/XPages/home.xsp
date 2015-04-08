@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex" pageTitle="LDC Via">
+
+	<xp:this.resources>
+		<xp:styleSheet href="/custom.css"></xp:styleSheet>
+		<xp:script src="/custom.js" clientSide="true"></xp:script>
+	</xp:this.resources>
+	<xp:this.beforePageLoad><![CDATA[#{javascript:if (!LDCVia.isEndUser()){
+	PersonInfo.load(@UserName());
+	LDCVia.operateAsEndUser(PersonInfo.getInternetAddress());
+	if (!LDCVia.isEndUser()){
+		context.redirectToPage("/nouser.xsp");
+	}
+}}]]></xp:this.beforePageLoad>
+	<xc:layout>
+		<xp:this.facets>
+			<xp:panel xp:key="facetLeft" styleClass="lotusColLeft">
+				<div class="lotusMenu" role="navigation" aria-label="Menu navigation">
+					<div class="lotusBottomCorner">
+						<div class="lotusInner">
+							<h2 id="heading2">Databases</h2>
+							<div class="lotusMenuHeader" role="tree">
+								<ul role="toolbar">
+									<xp:repeat id="repeat1" var="dbname" indexVar="databaseindex">
+										<xp:this.value><![CDATA[#{javascript:if (!sessionScope.viadbs){
+	sessionScope.viadbs = LDCVia.getDatabases();
+}
+return sessionScope.viadbs;}]]></xp:this.value>
+										<xp:panel tagName="li">
+											<xp:this.styleClass><![CDATA[#{javascript:if (context.getUrlParameter("dbname") == dbname){
+	return "lotusSelected";
+}}]]></xp:this.styleClass>
+											<xp:this.attrs>
+												<xp:attr name="role" value="presentation">
+												</xp:attr>
+											</xp:this.attrs>
+											<xp:link escape="true" text="#{javascript:dbname}"
+												id="link1" value="/home.xsp">
+												<xp:this.attrs>
+													<xp:attr name="role" value="treeitem">
+													</xp:attr>
+												</xp:this.attrs>
+												<xp:this.parameters>
+													<xp:parameter name="dbname"
+														value="#{javascript:return dbname;}">
+													</xp:parameter>
+												</xp:this.parameters>
+											</xp:link>
+										</xp:panel>
+									</xp:repeat>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xp:panel>
+			<xp:panel xp:key="facetMiddle">
+				<xp:panel id="collections">
+					<xp:panel>
+						<xp:this.rendered><![CDATA[#{javascript:context.getUrlParameter("dbname") != ""}]]></xp:this.rendered>
+
+						<div class="lotusTabContainer" role="tablist">
+							<ul class="lotusTabs">
+
+								<xp:repeat id="repeat2"
+									value="#{javascript:LDCVia.getCollections(context.getUrlParameter('dbname'));}"
+									var="collection" indexVar="collectionindex" disableOutputTag="true">
+
+									<xp:panel tagName="li">
+										<xp:this.styleClass><![CDATA[#{javascript:if (sessionScope.get("collectioncounts") == null){
+	sessionScope.collectioncounts = new java.util.Hashtable();
+}
+var key = context.getUrlParameter("dbname") + collection.getString("collection");
+if (!sessionScope.collectioncounts.containsKey(key)){
+	sessionScope.collectioncounts.put(key, collection.getInt("count"));
+}
+var out = "";
+if (collection.getString("collection") == context.getUrlParameter("collectionname")){
+	out += "lotusSelected";
+}
+return out;}]]></xp:this.styleClass>
+
+										<div>
+											<xp:link escape="true" id="link2" value="/home.xsp">
+												<xp:this.text><![CDATA[#{javascript:collection.getString("collection") + " (" + collection.getInt("count") + ")"}]]></xp:this.text>
+												<xp:this.parameters>
+													<xp:parameter name="collectionname">
+														<xp:this.value><![CDATA[#{javascript:collection.getString("collection")}]]></xp:this.value>
+													</xp:parameter>
+													<xp:parameter name="dbname">
+														<xp:this.value><![CDATA[#{javascript:context.getUrlParameter("dbname")}]]></xp:this.value>
+													</xp:parameter>
+												</xp:this.parameters>
+												<xp:eventHandler event="onclick" submit="true"
+													refreshMode="complete">
+												</xp:eventHandler>
+											</xp:link>
+										</div>
+
+									</xp:panel>
+								</xp:repeat>
+							</ul>
+						</div><!--end tab container-->
+
+					</xp:panel>
+				</xp:panel>
+
+				<xp:panel id="documents">
+					<xp:div styleClass="pager">
+						<xp:this.rendered><![CDATA[#{javascript:context.getUrlParameter("collectionname") != ""}]]></xp:this.rendered>
+						<xp:text>
+							<xp:this.value><![CDATA[#{javascript:var key = context.getUrlParameter("dbname") + context.getUrlParameter("collectionname");
+var count = sessionScope.collectioncounts.get(key);
+if (viewScope.startpos < 0){
+	viewScope.startpos = 0;
+}
+var to = viewScope.startpos + 30;
+if (to > count){
+	to = count;
+}
+(viewScope.startpos + 1) + " to " + to + " of " + count}]]></xp:this.value>
+						</xp:text>
+						<div class="lotusBtnContainer">
+							<xp:button id="firstlink" styleClass="lotusBtn"
+								disabled="#{javascript:viewScope.startpos == 0}">
+								<xp:this.value><![CDATA[<<]]></xp:this.value>
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="documents">
+									<xp:this.action><![CDATA[#{javascript:viewScope.startpos = 0}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+							<xp:button id="previouslink" styleClass="lotusBtn"
+								disabled="#{javascript:viewScope.startpos == 0}">
+								<xp:this.value><![CDATA[<]]></xp:this.value>
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="documents">
+									<xp:this.action><![CDATA[#{javascript:if (viewScope.startpos < 30){
+	viewScope.startpos = 0;
+}else{
+	viewScope.startpos = viewScope.startpos - 30;
+}}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+							<xp:button id="nextlink" styleClass="lotusBtn">
+								<xp:this.value><![CDATA[>]]></xp:this.value>
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="documents">
+									<xp:this.action><![CDATA[#{javascript:var key = context.getUrlParameter("dbname") + context.getUrlParameter("collectionname");
+var count = sessionScope.collectioncounts.get(key);
+if (viewScope.startpos > (count - 30)){
+	viewScope.startpos = (count - 30);
+}else{
+	viewScope.startpos = viewScope.startpos + 30;
+}}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+							<xp:button id="lastlink" styleClass="lotusBtn">
+								<xp:this.value><![CDATA[>>]]></xp:this.value>
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="documents">
+									<xp:this.action><![CDATA[#{javascript:var key = context.getUrlParameter("dbname") + context.getUrlParameter("collectionname");
+var count = sessionScope.collectioncounts.get(key);
+viewScope.startpos = (count - 30);}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:button>
+						</div>
+					</xp:div>
+					<xp:div style="overflow-x: scroll; width: 100%;">
+						<xp:this.rendered><![CDATA[#{javascript:context.getUrlParameter("collectionname") != ""}]]></xp:this.rendered>
+						<xp:panel tagName="table" styleClass="lotusTable">
+							<thead>
+								<tr class="lotusFirst">
+									<xp:repeat id="repeat3" var="metafield" indexVar="metafieldindex"
+										disableOutputTag="true" rows="999">
+										<xp:this.value><![CDATA[#{javascript:viewScope.metadata = LDCVia.getMetaData(context.getUrlParameter("dbname"), context.getUrlParameter("collectionname"));
+return viewScope.metadata}]]></xp:this.value>
+										<xp:text tagName="th" styleClass="lotusTitle" id="headerfield">
+											<xp:this.value><![CDATA[#{javascript:metafield.getString("fieldname")}]]></xp:this.value>
+										</xp:text>
+									</xp:repeat>
+								</tr>
+							</thead>
+							<tbody>
+								<xp:repeat id="docrepeat" var="doc" indexVar="docindex"
+									disableOutputTag="true">
+									<xp:this.value><![CDATA[#{javascript:if (viewScope.startpos == null || viewScope.startpos < 0){
+	viewScope.startpos = 0;
+}
+LDCVia.getDocuments(context.getUrlParameter("dbname"), context.getUrlParameter("collectionname"), parseInt(viewScope.startpos, 10));}]]></xp:this.value>
+									<xp:panel tagName="tr" styleClass="via-row">
+										<xp:repeat id="fieldrepeat" value="#{javascript:viewScope.metadata}"
+											var="docfield" indexVar="docfieldindex" disableOutputTag="true"
+											rows="999">
+											<xp:panel tagName="td" rendered="#{javascript:docfieldindex == 0}">
+												<xp:link escape="true" id="link3" styleClass="lotusTitle">
+													<xp:this.text><![CDATA[#{javascript:var val = doc.getString(docfield.fieldname);
+if (val == "" || val == null){
+	val = "[Blank]";
+}
+return val;}]]></xp:this.text>
+													<xp:eventHandler event="onclick" submit="true"
+														refreshMode="partial" refreshId="via-dialog">
+														<xp:this.action><![CDATA[#{javascript:viewScope.unid = doc.getString("__unid");
+getComponent("via-dialog").show();}]]></xp:this.action>
+													</xp:eventHandler>
+												</xp:link>
+											</xp:panel>
+											<xp:text tagName="td" styleClass="lotusMeta lotusNowrap"
+												id="docfield" value="#{javascript:doc.getString(docfield.fieldname);}">
+												<xp:this.rendered><![CDATA[#{javascript:docfieldindex > 0}]]></xp:this.rendered>
+											</xp:text>
+										</xp:repeat>
+									</xp:panel>
+								</xp:repeat>
+							</tbody>
+						</xp:panel>
+					</xp:div>
+				</xp:panel>
+			</xp:panel>
+
+		</xp:this.facets>
+	</xc:layout>
+	<xp:scriptBlock id="scriptBlock1">
+		<xp:this.value><![CDATA[#{javascript:"var hostname = '" + LDCVia.getHostName() + "';\n" + 
+"var apikey = '" + LDCVia.getApiKey() + "';";}]]></xp:this.value>
+	</xp:scriptBlock>
+	<xe:dialog id="via-dialog" title="View Document" styleClass="via-dialog">
+		<div class="lotusForm2 lotusLeftLabels">
+			<div class="lotusFormBody">
+				<xp:repeat id="repeat4" var="thedocfield" indexVar="thedocfieldindex"
+					disableOutputTag="true" rows="999">
+					<xp:this.value><![CDATA[#{javascript:requestScope.doc = LDCVia.getDocument(context.getUrlParameter("dbname"), 
+	context.getUrlParameter("collectionname"), 
+	viewScope.unid);
+return viewScope.metadata;}]]></xp:this.value>
+					<div class="lotusFormField">
+						<xp:label value="#{javascript:thedocfield.fieldname}" id="label1"
+							for="computedField1">
+						</xp:label>
+						<xp:text tagName="div" styleClass="lotusFieldWrapper" id="computedField1"
+							value="#{javascript:requestScope.doc.getString(thedocfield.fieldname);}">
+						</xp:text>
+					</div>
+				</xp:repeat>
+			</div>
+		</div>
+	</xe:dialog>
+</xp:view>

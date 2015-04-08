@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='form' xmlns='http://www.lotus.com/dxl' version='9.0' maintenanceversion='1.0'
+ replicaid='80257D7900353491'>
+<noteinfo noteid='166' unid='5BA4EF57165F2B9980257D7900356B34' sequence='1'>
+<created><datetime dst='true'>20141022T104328,52+01</datetime></created>
+<modified><datetime dst='true'>20141022T104328,54+01</datetime></modified>
+<revised><datetime dst='true'>20141022T104328,53+01</datetime></revised>
+<lastaccessed><datetime dst='true'>20141022T104328,54+01</datetime></lastaccessed>
+<addedtofile><datetime dst='true'>20141022T104328,54+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name='$TITLE'><text>$DBIcon</text></item>
+<item name='$Flags'><text>34Ci~Q</text></item>
+<item name='$ImagesWide' sign='true'><number>1</number></item>
+<item name='$ImagesHigh' sign='true'><number>1</number></item>
+<item name='$ImagesColorize' sign='true'><number>0</number></item>
+<item name='$FileSize' sign='true'><number>2818</number></item>
+<item name='$ImageData' sign='true'>
+<rawitemdata type='1'>
+mQAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAH0AHAAAAAIAAAAAAAILAAABAAAAAQAAAAAAAAB8
+AAwLAAACCwILiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAA
+AAlwSFlzAAALEwAACxMBAJqcGAAAAr9pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1l
+dGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAg
+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50
+YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAg
+eG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgICAgICAgICB4bWxu
+czp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx4bXA6TW9k
+aWZ5RGF0ZT4yMDE0LTA4LTIxVDIwOjU2OjIyPC94bXA6TW9kaWZ5RGF0ZT4KICAgICAgICAgPHht
+cDpDcmVhdGVEYXRlPjIwMTQtMDgtMjFUMjA6MTU6NDM8L3htcDpDcmVhdGVEYXRlPgogICAgICAg
+ICA8eG1wOkNyZWF0b3JUb29sPkFkb2JlIEZpcmV3b3JrcyBDUzUgMTEuMC4wLjQ4NCBXaW5kb3dz
+PC94bXA6Q3JlYXRvclRvb2w+CiAgICAgICAgIDx0aWZmOllSZXNvbHV0aW9uPjcyPC90aWZmOllS
+ZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9u
+PgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj43MjwvdGlmZjpYUmVzb2x1dGlvbj4KICAgICAg
+PC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+Cpp8C94AAAfcSURB
+VFgJ7VdbjFRVFl331q0X3dA9gBoJTxUlCOJbaBmfUT+ExB9NHCWSNMZPTEzwnfhITMT4NxNjTIwa
+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
+</rawitemdata></item>
+<item name='$MimeType' sign='true'><text>image/png</text></item>
+<item name='$FileModDT' sign='true'><datetime dst='true'>20141022T104319,00+01</datetime></item>
+<item name='$ImageNames' sign='true'><text>Z:\Dropbox\LDC\LDC Via\ldc-via-logo-vsmall.png</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item></note>
+

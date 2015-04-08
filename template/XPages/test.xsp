@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+	<xp:table style="width:100.0%">
+		<xp:tr>
+			<xp:td id="databases">
+				<ul>
+					<xp:repeat id="repeat1" value="#{javascript:LDCVia.getDatabases();}"
+						var="dbname" indexVar="databaseindex">
+						<li>
+							<xp:link escape="true" text="#{javascript:dbname}" id="link1">
+								<xp:eventHandler event="onclick" submit="true"
+									refreshMode="partial" refreshId="collections">
+									<xp:this.action><![CDATA[#{javascript:sessionScope.currentdb = dbname}]]></xp:this.action>
+								</xp:eventHandler>
+							</xp:link>
+						</li>
+					</xp:repeat>
+				</ul>
+			</xp:td>
+			<xp:td id="collections">
+				<xp:repeat id="repeat2"
+					value="#{javascript:LDCVia.getCollections(sessionScope.currentdb);}"
+					var="collection" indexVar="collectionindex"
+					rendered="#{javascript:sessionScope.currentdb != null}">
+					<li>
+						<xp:link escape="true" id="link2">
+							<xp:this.text><![CDATA[#{javascript:collection.getString("collection") + " (" + collection.getString("count") + ")"}]]></xp:this.text>
+							<xp:eventHandler event="onclick"
+								submit="true" refreshMode="partial" refreshId="documents">
+								<xp:this.action><![CDATA[#{javascript:sessionScope.currentcollection = collection.getString("collection")}]]></xp:this.action>
+							</xp:eventHandler>
+						</xp:link>
+					</li>
+				</xp:repeat>
+			</xp:td>
+			<xp:td id="documents">
+				<xp:repeat id="repeat3"
+					value="#{javascript:LDCVia.getDocuments(sessionScope.currentdb, sessionScope.currentcollection);}"
+					var="doc" indexVar="docindex">
+					<xp:this.rendered><![CDATA[#{javascript:sessionScope.currentdb != null && sessionScope.currentcollection != null}]]></xp:this.rendered>
+					<li>
+						<xp:link escape="true" id="link3">
+							<xp:this.text><![CDATA[#{javascript:doc.getString("__unid")}]]></xp:this.text>
+
+						</xp:link>
+					</li>
+				</xp:repeat>
+			</xp:td>
+		</xp:tr>
+	</xp:table>
+</xp:view>

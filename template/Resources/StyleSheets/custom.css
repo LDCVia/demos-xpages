@@ -1,0 +1,17 @@
+.pager {
+	position: absolute;
+	right: 0;
+	margin-bottom: 10px;
+}
+
+.pager span {
+	padding: 3px;
+}
+
+.lotusTable {
+	margin-top: 30px;
+}
+
+.pager .lotusBtnContainer {
+	display: inline;
+}

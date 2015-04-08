@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><note xmlns="http://www.lotus.com/dxl" class="form" maintenanceversion="1.0" replicaid="80257D7900353491" version="9.0">
+<noteinfo noteid="1f6" sequence="1" unid="66D068A288F3061F80257D7D006E9D4D">
+<created><datetime>20141026T200812,29+00</datetime></created>
+<modified><datetime>20141026T200812,38+00</datetime></modified>
+<revised><datetime>20141026T200812,37+00</datetime></revised>
+<lastaccessed><datetime>20141026T200812,38+00</datetime></lastaccessed>
+<addedtofile><datetime>20141026T200812,38+00</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Matt White/O=Exhilarate</name></updatedby>
+<wassignedby><name>CN=Matt White/O=Exhilarate</name></wassignedby>
+<item name="$TITLE"><text>ldc-via-logo.png</text></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+
+
+
+
+
+
+
+
+
+<item name="$MimeType" sign="true"><text>image/png</text></item>
+<item name="$FileModDT" sign="true"><datetime dst="true">20140821T205644,00+01</datetime></item>
+<item name="$ImageNames" sign="true"><text>ldc-via-logo.png</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>

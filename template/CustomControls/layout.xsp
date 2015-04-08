@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+	<xe:applicationLayout id="applicationLayout1">
+		<xp:callback facetName="facetMiddle" id="facetMiddle"></xp:callback>
+		<xe:this.facets>
+			<xp:callback facetName="facetLeft" id="facetLeft"
+				xp:key="LeftColumn">
+			</xp:callback>
+		</xe:this.facets>
+		<xe:this.configuration>
+			<xe:oneuiApplication placeBar="false"
+				productLogo="/ldc-via-logo-small.png" productLogoAlt="LDC Via"
+				titleBarName="LDC Via" legalText="Copyright LDC Via Limited">
+				<xe:this.footerLinks></xe:this.footerLinks>
+				<xe:this.bannerApplicationLinks>
+					<xe:basicLeafNode label="Home" href="/home.xsp">
+					</xe:basicLeafNode>
+					<xe:basicLeafNode label="About LDC Via"
+						href="http://ldcvia.com">
+					</xe:basicLeafNode>
+
+				</xe:this.bannerApplicationLinks>
+				<xe:this.bannerUtilityLinks>
+					<xe:basicLeafNode label="Help"
+						href="http://ldcvia.zendesk.com">
+					</xe:basicLeafNode>
+					<xe:loginTreeNode label="Login"></xe:loginTreeNode>
+				</xe:this.bannerUtilityLinks>
+			</xe:oneuiApplication>
+		</xe:this.configuration>
+	</xe:applicationLayout></xp:view>
